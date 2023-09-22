@@ -13,7 +13,7 @@ class Payment {
         $this->url = $url;
         $this->headers = ["X-Token: $token"];
     }
-    function post($body) {
+    function create($body) {
         $curl = curl_init($this->url);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $this->headers);
@@ -21,6 +21,8 @@ class Payment {
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($curl);
         curl_close($curl);
+        var_dump($response);
+        exit;
         return json_decode($response);
     }
 
